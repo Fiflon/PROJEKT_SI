@@ -70,7 +70,9 @@ class App:
 
         selected_answer = self.message["answers"][selected_index]
         print(selected_answer, self.message["name"])
+        # env.assert_string(f'({self.message["name"]} "answered")')
         env.assert_string(f'({self.message["name"]} "{selected_answer}")')
+
         env.run()
         env.eval("(facts)")
 
