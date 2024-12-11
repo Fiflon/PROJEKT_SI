@@ -4,6 +4,10 @@
     (multislot answers)
 )
 
+(deftemplate zadane
+    (slot name)
+    (multislot answers)
+)
 
 (deftemplate book
     (slot author)
@@ -26,6 +30,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "fairy-tale") (question "Up for a fairy tale?") (answers "Yes, why mess with classic formula" "No, something more gritty")))
+    (assert (zadane (name "genre")(answers)))
 )
 
 (defrule classic-preference
@@ -35,6 +40,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "classic-preference") (question "Which of the classics do you prefer?") (answers "A gritty, existential fable" "Reverse Rumpelstiltskin" "Goblin Politics" "A short story")))
+    (assert (zadane (name "fairy-tale")(answers "Yes, why mess with classic formula")))
 )
 
 (defrule gritty-fable-result
@@ -44,6 +50,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Kazuo Ishiguro") (title "The Buried Giant")))
+    (assert (zadane (name "classic-preference")(answers "A gritty, existential fable")))
 )
 
 (defrule rumpelstiltskin-result
@@ -53,6 +60,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Naomi Novik") (title "Spinning Silver")))
+    (assert (zadane (name "classic-preference")(answers "Reverse Rumpelstiltskin")))
 )
 
 (defrule goblin-politics-result
@@ -62,6 +70,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Katherine Addison") (title "The Goblin Emperor")))
+    (assert (zadane (name "classic-preference")(answers "Goblin Politics")))
 )
 
 (defrule short-story
@@ -71,6 +80,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "short-story") (question "The short story should be:") (answers "Based in Asian folklore" "Provocative yet surreal")))
+    (assert (zadane (name "classic-preference")(answers "A short story")))
 )
 
 (defrule asian-folklore-result
@@ -80,6 +90,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Ken Liu") (title "The Paper Menagerie And Other Stories")))
+    (assert (zadane (name "short-story")(answers "Based in Asian folklore")))
 )
 
 (defrule provocative-surreal-result
@@ -89,6 +100,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Carmen Maria Machado") (title "Her Body and Other Parties")))
+    (assert (zadane (name "short-story")(answers "Provocative yet surreal")))
 )
 
 
@@ -99,6 +111,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "society-change") (question "Society on the brink of change?") (answers "Yes, bring on the new world" "No, not that gritty")))
+    (assert (zadane (name "fairy-tale")(answers "No, something more gritty")))
 )
 
 (defrule land-change
@@ -108,6 +121,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "land-change") (question "What's changing the land?") (answers "Once in an age events" "Magical Revolution")))
+    (assert (zadane (name "society-change")(answers "Yes, bring on the new world")))
 )
 
 
@@ -118,6 +132,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "age-events") (question "What events change the land?") (answers "Geological and caste upheaval" "Celestial events in an unbalanced world")))
+    (assert (zadane (name "land-change")(answers "Once in an age events")))
 )
 
 (defrule geo-caste-upheaval-result
@@ -127,6 +142,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "N.K. Jemisin") (title "The Fifth Season")))
+    (assert (zadane (name "age-events")(answers "Geological and caste upheaval")))
 )
 
 (defrule celestial-events-result
@@ -136,6 +152,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Rebecca Roanhorse") (title "Black Sun")))
+    (assert (zadane (name "age-events")(answers "Celestial events in an unbalanced world")))
 )
 
 (defrule magical-revolution
@@ -145,6 +162,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "magical-revolution") (question "How is magic changing the world?") (answers "A monopoly over magical jade" "New magic and ghostly intrigue" "Magic giving way to machines")))
+    (assert (zadane (name "land-change")(answers "Magical Revolution")))
 )
 
 (defrule jade-monopoly-result
@@ -154,6 +172,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Fonda Lee") (title "Jade City")))
+    (assert (zadane (name magical-revolution)(answers "A monopoly over magical jade")))
 )
 
 (defrule ghostly-intrigue-result
@@ -163,6 +182,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Sofia Samatar") (title "A Stranger un Olondria")))
+    (assert (zadane (name magical-revolution)(answers "New magic and ghostly intrigue")))
 )
 
 (defrule machines-result
@@ -172,6 +192,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Joe Abercrombie") (title "A Little Haterd")))
+    (assert (zadane (name magical-revolution)(answers "Magic giving way to machines")))
 )
 
 
@@ -183,6 +204,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "show-running") (question "Who's running the show?") (answers "The Gods" "The People")))
+    (assert (zadane (name society-change)(answers "No, not that gritty")))
 )
 
 (defrule gods-involvement
@@ -192,6 +214,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "gods-involvement") (question "How are the gods involved?") (answers "Gods cohabiting hosts" "Gods being overthrowed" "Gods among us")))
+    (assert (zadane (name show-running)(answers "The Gods")))
 )
 
 (defrule gods-cohabiting-result
@@ -201,6 +224,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "R.T.Kuang") (title "The Poppy War")))
+    (assert (zadane (name gods-involvement)(answers "Gods cohabiting hosts")))
 )
 
 (defrule overthrowed-gods-result
@@ -210,6 +234,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Robert Jackson Bennet") (title "City of Stairs")))
+    (assert (zadane (name gods-involvement)(answers "Gods being overthrowed")))
 )
 
 (defrule gods-among-us
@@ -219,6 +244,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "gods-among-us") (question "In what way are gods among us?") (answers "The Odyssey from a goddess' point of view" "Creating a utopia" "With shapeshifters")))
+    (assert (zadane (name gods-involvement)(answers "Gods among us")))
 )
 
 (defrule odyssey-result
@@ -228,6 +254,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Madeline Miller") (title "Circe")))
+    (assert (zadane (name gods-among-us)(answers "The Odyssey from a goddess' point of view")))
 )
 
 (defrule utopia-result
@@ -237,6 +264,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Jo Walton") (title "The Just City")))
+    (assert (zadane (name gods-among-us)(answers "Creating a utopia")))
 )
 
 (defrule shapeshifters-result
@@ -246,6 +274,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Marlon James") (title "Black Leopard, Red Wolf")))
+    (assert (zadane (name gods-among-us)(answers "With shapeshifters")))
 )
 
 (defrule travel
@@ -255,6 +284,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "travel") (question "Want to travel somewhere?") (answers "Yes, to a time in the past" "Yes, to somewhere with magical borders" "No")))
+    (assert (zadane (name show-running)(answers "The People")))
 )
 
 (defrule no-travel-result
@@ -264,6 +294,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Seanan McGuire") (title "Every Heart A Doorway")))
+    (assert (zadane (name travel)(answers "No")))
 )
 
 (defrule in-past
@@ -273,8 +304,8 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "in-past") (question "What kind of place in the past?") (answers "Egypt steeped in magic" "With a magic swindler" "With a magic mapmaker")))
+    (assert (zadane (name travel)(answers "Yes, to a time in the past")))
 )
-
 
 (defrule travel-past-egipy-result
     ?odp <- (in-past "Egypt steeped in magic")
@@ -283,6 +314,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "P. Djeli Clark") (title "A Master of Djinn")))
+    (assert (zadane (name in-past)(answers "Egypt steeped in magic")))
 )
 
 (defrule magic-swindler-result
@@ -292,6 +324,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "S.A. Chakraborty") (title "The City of Brass")))
+    (assert (zadane (name in-past) (answers "With a magic swindler")))
 )
 
 (defrule magic-mapmaker-result
@@ -301,6 +334,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "G. Willow Wilson") (title "The Bird King")))
+    (assert (zadane (name in-past) (answers "With a magic mapmaker")))
 )
 
 (defrule magical-borders
@@ -310,6 +344,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "magical-borders") (question "Are you sure you want magical borders?") (answers "Perhaps?" "Yes, bring on the new world")))
+    (assert (zadane (name travel) (answers "Yes, to somewhere with magical borders")))
 )
 
 (defrule perhaps-magical-borders-result
@@ -319,6 +354,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Susanna Clarke") (title "Piranesi")))
+    (assert (zadane (name magical-borders) (answers "Perhaps?")))
 )
 
 (defrule new-world
@@ -328,6 +364,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "new-world") (question "Where do you want to go?") (answers "To other Earths" "To find why magic dried up" "To a magical New York City")))
+    (assert (zadane (name magical-borders) (answers "Yes, bring on the new world")))
 )
 
 (defrule other-earths-result
@@ -337,6 +374,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "V.E.Schwab") (title "A Darker Shade of Magic")))
+    (assert (zadane (name new-world) (answers "To other Earths")))
 )
 
 (defrule magic-dried-up-result
@@ -346,6 +384,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Zen Cho") (title "Sorcerer to the Crown")))
+    (assert (zadane (name new-world) (answers "To find why magic dried up")))
 )
 
 (defrule magical-NY-result
@@ -355,9 +394,8 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Victor LaValle") (title "The Changeling")))
+    (assert (zadane (name new-world) (answers "To a magical New York City")))
 )
-
-;both branch
 
 (defrule genre-mix-preference
     ?odp <- (genre "A little bit of both")
@@ -366,6 +404,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "genre-mix-preference") (question "Which do you prefer?") (answers "A bit of horror" "Alternative history")))
+    (assert (zadane (name genre) (answers "A little bit of both")))
 )
 
 (defrule horror
@@ -375,6 +414,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "horror") (question "What type of horror?") (answers "Dark and omnious" "Religious horror in space")))
+    (assert (zadane (name genre-mix-preference) (answers "A bit of horror")))
 )
 
 (defrule horror-dark-result
@@ -384,6 +424,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Silvia Moreno-Garcia") (title "Mexican Gothic")))
+    (assert (zadane (name horror) (answers "Dark and omnious")))
 )
 
 (defrule horror-in-space-result
@@ -393,6 +434,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Tamsyn Muir") (title "Gideon The Ninth")))
+    (assert (zadane (name horror) (answers "Religious horror in space")))
 )
 
 (defrule alternative-history
@@ -402,6 +444,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "alternative-history") (question "Where should the alternative history take place?") (answers "In the past" "In the present" "In the future")))
+    (assert (zadane (name genre-mix-preference) (answers "Alternative history")))
 )
 
 (defrule alternative-in-past-result
@@ -411,8 +454,8 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Robinette Kowal") (title "The Calculating Stars")))
+    (assert (zadane (name alternative-history) (answers "In the past")))
 )
-
 
 (defrule pandemic-too-soon
     ?odp <- (alternative-history "In the present")
@@ -421,6 +464,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "pandemic-too-soon") (question "Too soon for a pandemic?") (answers "Yes" "No")))
+    (assert (zadane (name alternative-history) (answers "In the present")))
 )
 
 (defrule pandemic-result
@@ -430,6 +474,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Emily St. John Mandel") (title "Station Eleven")))
+    (assert (zadane (name pandemic-too-soon) (answers "No")))
 )
 
 (defrule instead-of-pandemic
@@ -439,6 +484,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "instead-of-pandemic") (question "Which would you rather do?") (answers "Escape political unrest" "Start a revolution")))
+    (assert (zadane (name pandemic-too-soon) (answers "Yes")))
 )
 
 (defrule political-unrest-result
@@ -448,6 +494,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "E. Lily Yu") (title "On Fragile Waves")))
+    (assert (zadane (name instead-of-pandemic) (answers "Escape political unrest")))
 )
 
 (defrule revolution-result
@@ -457,6 +504,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Tochi Onyebuchi") (title "Riot Baby")))
+    (assert (zadane (name instead-of-pandemic) (answers "Start a revolution")))
 )
 
 (defrule fighting-in-the-future
@@ -466,6 +514,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "fighting-in-the-future") (question "What would you rather fight?") (answers "Imperialism" "Climate change")))
+    (assert (zadane (name alternative-history) (answers "In the future")))
 )
 
 (defrule imperialism-result
@@ -475,6 +524,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Seth Dickinson") (title "The Traitor Baru Cormorant")))
+    (assert (zadane (name fighting-in-the-future) (answers "Imperialism")))
 )
 
 (defrule climate-change-result
@@ -484,9 +534,8 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Omar El Akkad") (title "American War")))
+    (assert (zadane (name fighting-in-the-future) (answers "Climate change")))
 )
-
-; sci-fi branch
 
 (defrule travel-planets
     ?odp <- (genre "Sci-Fi")
@@ -495,6 +544,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "travel-planets") (question "Want to travel to other planets?") (answers "Yes. Other planets it is" "No. Let's stay on Earth")))
+    (assert (zadane (name genre) (answers "Sci-Fi")))
 )
 
 (defrule stay-on-earth
@@ -504,6 +554,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "stay-on-earth") (question "Today, or an ultra-modern future?") (answers "Focus on today" "Bring on the future" "Why not both?")))
+    (assert (zadane (name travel-planets) (answers "No. Let's stay on Earth")))
 )
 
 (defrule bring-feature
@@ -513,6 +564,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "bring-feature") (question "What should the future look like?") (answers "Humans escaping" "Humanity struggling")))
+    (assert (zadane (name stay-on-earth) (answers "Bring on the future")))
 )
 
 (defrule human-escape
@@ -522,6 +574,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "human-escape") (question "Where do people escape to?") (answers "Through the multiverse" "To where time travel is weaponized")))
+    (assert (zadane (name bring-feature) (answers "Humans escaping")))
 )
 
 (defrule multiverse-result
@@ -531,6 +584,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Micaiah Johnson") (title "The Space Between Worlds")))
+    (assert (zadane (name human-escape) (answers "Through the multiverse")))
 )
 
 (defrule time-travel-result
@@ -540,6 +594,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Amal El-Mohtar and Max Gladstone") (title "This Is How You Lose the Time War")))
+    (assert (zadane (name human-escape) (answers "To where time travel is weaponized")))
 )
 
 (defrule humanity-struggling
@@ -549,6 +604,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "humanity-struggling") (question "What are the consequences of the problems?") (answers "We're ready to rebuild" "We've become refugees")))
+    (assert (zadane (name bring-feature) (answers "Humanity struggling")))
 )
 
 (defrule ready-to-rebuild-result
@@ -558,6 +614,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Jeff VaderMeer") (title "Anihilation")))
+    (assert (zadane (name humanity-struggling) (answers "We're ready to rebuild")))
 )
 
 (defrule refugees-result
@@ -567,6 +624,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Tade Thompson") (title "Rosewater")))
+    (assert (zadane (name humanity-struggling) (answers "We've become refugees")))
 )
 
 (defrule focus-on-today-result
@@ -576,8 +634,8 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Sarah Gailey") (title "The Echo Wife")))
+    (assert (zadane (name stay-on-earth) (answers "Focus on today")))
 )
-
 (defrule why-not-both-result
     ?odp <- (stay-on-earth "Why not both?")
     ?wiad <- (pytanie (name ?x))
@@ -585,6 +643,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Ted Chiang") (title "Exhalation")))
+    (assert (zadane (name stay-on-earth) (answers "Why not both?")))
 )
 
 (defrule other-planets
@@ -594,6 +653,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "other-planets") (question "Where should the another planet be?") (answers "Let's start closer to home" "Let's go to another galaxy")))
+    (assert (zadane (name travel-planets) (answers "Yes. Other planets it is")))
 )
 
 (defrule another-galaxy
@@ -603,6 +663,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "another-galaxy") (question "Why do we go to a different galaxy?") (answers "To explore" "To settle down")))
+    (assert (zadane (name other-planets) (answers "Let's go to another galaxy")))
 )
 
 (defrule explore-with-AI
@@ -612,6 +673,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "explore-with-AI") (question "Do you want to explore with sentient AIs?") (answers "Yes" "No, explore nature")))
+    (assert (zadane (name another-galaxy) (answers "To explore")))
 )
 
 (defrule without-AI-result
@@ -621,6 +683,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Yoon Ha Lee") (title "Ninefox Gambit")))
+    (assert (zadane (name explore-with-AI) (answers "No, explore nature")))
 )
 
 (defrule sentient-ai
@@ -630,6 +693,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "sentient-ai") (question "What kind of AI?") (answers "Addicted to TV shows" "With a hive mind")))
+    (assert (zadane (name explore-with-AI) (answers "Yes")))
 )
 
 (defrule addicted-tv-result
@@ -639,6 +703,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Martha Wells") (title "All Systems Red")))
+    (assert (zadane (name sentient-ai) (answers "Addicted to TV shows")))
 )
 
 (defrule hive-mind-result
@@ -648,6 +713,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Ann Leckie") (title "Ancillary Justice")))
+    (assert (zadane (name sentient-ai) (answers "With a hive mind")))
 )
 
 (defrule settle-down
@@ -657,6 +723,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "settle-down") (question "Settle down where?") (answers "At the finest off-world university" "On another planet ruled by someone")))
+    (assert (zadane (name another-galaxy) (answers "To settle down")))
 )
 
 (defrule finest-university-result
@@ -666,6 +733,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Nnedi Okorafor") (title "Binti")))
+    (assert (zadane (name settle-down) (answers "At the finest off-world university")))
 )
 
 (defrule planet-ruled-by
@@ -675,6 +743,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "planet-ruled-by") (question "Who should rule the planet?") (answers "Empires inspired by the past" "Intelligent spiders uplifted by science")))
+    (assert (zadane (name settle-down) (answers "On another planet ruled by someone")))
 )
 
 (defrule empires-inspired-result
@@ -684,6 +753,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Arkady Martine") (title "A Memory Called Empire")))
+    (assert (zadane (name planet-ruled-by) (answers "Empires inspired by the past")))
 )
 
 (defrule intelligent-spiders-result
@@ -693,6 +763,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Adrian Tchaikovsky") (title "Children of Time")))
+    (assert (zadane (name planet-ruled-by) (answers "Intelligent spiders uplifted by science")))
 )
 
 (defrule closer-home
@@ -702,8 +773,9 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "closer-home") (question "What to do closer to home?") (answers "Let the action come to us" "See where adventure leads")))
+    (assert (zadane (name other-planets) (answers "Let's start closer to home")))
 )
-    
+
 (defrule action-come-to-us
     ?odp <- (closer-home "Let the action come to us")
     ?wiad <- (pytanie (name ?x))
@@ -711,6 +783,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "action-come-to-us") (question "Which do you prefer?") (answers "A brewing war with alien tech" "A documentary about a colony's last survivor" "First contact through a VR game")))
+    (assert (zadane (name closer-home) (answers "Let the action come to us")))
 )
 
 (defrule brewing-war-result
@@ -720,6 +793,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "James S.A. Corey") (title "Leviathan Wakes")))
+    (assert (zadane (name action-come-to-us) (answers "A brewing war with alien tech")))
 )
 
 (defrule documentary-result
@@ -729,6 +803,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Catherynne M. Valente") (title "Radiance")))
+    (assert (zadane (name action-come-to-us) (answers "A documentary about a colony's last survivor")))
 )
 
 (defrule first-contact-result
@@ -738,6 +813,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Cixin Liu") (title "The Three-Body Problem")))
+    (assert (zadane (name action-come-to-us) (answers "First contact through a VR game")))
 )
 
 (defrule adventure-leads
@@ -747,6 +823,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "adventure-leads") (question "Where should the adventure lead?") (answers "To explore new worlds, seek out new life, and new civilizations" "To find new home" "To science some shit")))
+    (assert (zadane (name closer-home) (answers "See where adventure leads")))
 )
 
 (defrule some-shit-result
@@ -756,6 +833,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Andy Weir") (title "The Martian")))
+    (assert (zadane (name adventure-leads) (answers "To science some shit")))
 )
 
 (defrule explore-strange-worlds-result
@@ -765,6 +843,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Becky Chambers") (title "The Long Way to a Small, Angry Planet")))
+    (assert (zadane (name adventure-leads) (answers "To explore new worlds, seek out new life, and new civilizations")))
 )
 
 (defrule find-new-home
@@ -774,6 +853,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (pytanie (name "find-new-home") (question "What should your new home be like?") (answers "Using a changing extradimensional field" "On generational ship with a racial divide")))
+    (assert (zadane (name adventure-leads) (answers "To find new home")))
 )
 
 (defrule changing-extradimensional-field-result
@@ -783,6 +863,7 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "John Scalzi") (title "The Collapsing Empire")))
+    (assert (zadane (name find-new-home) (answers "Using a changing extradimensional field")))
 )
 
 (defrule generational-ship-result
@@ -792,4 +873,5 @@
     (retract ?wiad)
     (retract ?odp)
     (assert (book (author "Rivers Solomon") (title "An Unkindness of Ghosts")))
+    (assert (zadane (name find-new-home) (answers "On generational ship with a racial divide")))
 )
